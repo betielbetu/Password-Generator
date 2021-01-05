@@ -16,17 +16,19 @@ function generatePassword() {
   var includeLowerCase = confirm("would you like to use lowercase?");
   var includeUpperCase = confirm("would you like to use uppercase?");
   var includeNumbers = confirm ("would you like to use numbers?");
+  var includeSymbols = confirm ("would you like to use symbols?");
   var lowercase = "abcdefghijklmnopqrstuvwxyz";
   var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numbers = "0123456789";
+  var symbols= "!@#$%^&*";
 
 
-  while (!includeUpperCase && !includeLowerCase && !includeNumbers) {
+  while (!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSymbols) {
     alert("You must select at least one character type!");
     includeUpperCase = confirm("would you like to use uppercase letters?");
     includeLowerCase = confirm("Would you like to use lowercase letters?");
-    includeNumbers = confirm ("would you like to use numbers?")
-
+    includeNumbers = confirm ("would you like to use numbers?");
+    includeSymbols = confirm ("would you like to use symbols?");
   }
   while (pass.length<length) {
     if (includeLowerCase && pass.length<length) {
@@ -41,8 +43,10 @@ function generatePassword() {
       var c = Math.floor(Math.random() * numbers.length + 1);
       pass += numbers.charAt(c); 
     } 
-
-    
+    if (includeSymbols && pass.length<length) {
+      var c = Math.floor(Math.random() * symbols.length + 1);
+      pass += symbols.charAt(c); 
+    }  
   }
   return pass;
 }
